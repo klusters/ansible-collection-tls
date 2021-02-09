@@ -12,7 +12,7 @@
     until: task_result is success
     retries: 10
     delay: 2
-  
+
   - name: Gen private key
     community.crypto.openssl_privatekey:
       path: '{{ tls_key }}'

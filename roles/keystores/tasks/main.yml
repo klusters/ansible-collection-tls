@@ -7,7 +7,7 @@
     mode: 0755
     owner: '{{ tls_keystore_owner }}'
     group: '{{ tls_keystore_owner }}'
-  loop: 
+  loop:
   - '{{ tls_certs_path }}'
   - '{{ tls_keys_path }}'
   - '{{ tls_jks_path }}'
