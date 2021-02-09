@@ -45,6 +45,6 @@ jobs:
           pip install molecule[docker] yamllint ansible-lint
 
       - name: Run tests
-        working-directory: ansible_collections/klusters/system
+        working-directory: ansible_collections/klusters/tls
         run: |
           molecule test -s ${{ matrix.collection_role }}
