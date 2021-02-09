@@ -12,13 +12,8 @@
     path: "{{ item }}"
     state: directory
     mode: 0755
-    owner: '{{ tls_keystore_owner }}'
-    group: '{{ tls_keystore_owner }}'
   loop:
-  - '{{ tls_certs_path }}'
   - '{{ tls_keys_path }}'
-  - '{{ tls_jks_path }}'
-  - '{{ tls_p12_path }}'
 
 - name: Backup private key
   ansible.builtin.copy:
