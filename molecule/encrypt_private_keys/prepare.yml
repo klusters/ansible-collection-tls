@@ -13,6 +13,16 @@
     retries: 10
     delay: 2
 
+  - name: Create certs dirs
+    file:
+      path: "{{ item }}"
+      state: directory
+      mode: 0755
+      owner: '{{ tls_keystore_owner }}'
+      group: '{{ tls_keystore_owner }}'
+    loop:
+    - '{{ tls_keys_path }}'
+
   - name: Gen private key
     community.crypto.openssl_privatekey:
       path: '{{ tls_key }}'
