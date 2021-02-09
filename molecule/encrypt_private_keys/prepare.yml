@@ -2,8 +2,6 @@
 
 - name: Prepare
   hosts: all
-  gather_facts: no
-
   vars_files: ['../../roles/encrypt_private_keys/defaults/main.yml']
 
   tasks:
