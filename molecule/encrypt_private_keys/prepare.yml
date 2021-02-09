@@ -17,7 +17,7 @@
 
   - name: Install python-pip
     package: 
-      name: python-pip, python-cryptography, pyOpenSSL
+      name: python-pip, python-cryptography, pyOpenSSL, java-latest-openjdk
       update_cache: yes
 
   tasks:
@@ -26,8 +26,6 @@
       path: "{{ item }}"
       state: directory
       mode: 0755
-      owner: '{{ tls_keystore_owner }}'
-      group: '{{ tls_keystore_owner }}'
     loop:
     - '{{ tls_keys_path }}'
 
