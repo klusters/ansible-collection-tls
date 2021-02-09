@@ -35,6 +35,13 @@ Run *playbook_name.yml* :
 ansible-playbook playbook_name.yml
 ```
 
+## Looping support
+See [ansible-tls-klusters](https://github.com/klusters/ansible-tls-klusters) project
+
+Take a look at inventories/``**``/group_vars to see variables related to this collection 
+
+Take a look at playbooks/``**``/keystores.yml to see executions related to this collection
+
 ## Testing
 
 Testing is done through GitHub Actions, and can be tested locally as well.
