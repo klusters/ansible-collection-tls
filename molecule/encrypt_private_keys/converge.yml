@@ -3,6 +3,6 @@
   hosts: all
 
   roles:
-    - role: klusters.tls.encrypt_private_keys
+    - role: encrypt_private_keys
 
 ...
