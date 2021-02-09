@@ -1,0 +1,13 @@
+---
+
+- name: Backup private key
+  ansible.builtin.copy:
+    remote_src: yes
+    src: '{{ tls_key }}'
+    dest: '{{ tls_key }}_encrypted'
+    mode: 0400
+
+- name: Encrypt private key
+  ansible.builtin.command: "ssh-keygen -m PEM -t rsa -f '{{ tls_key }}_encrypted' -p -N '{{ tls_keys_password }}'"
+
+...
