@@ -27,4 +27,5 @@
       privatekey_passphrase: '{{ tls_keys_password }}'
       csr_path: '{{ tls_certs_path }}/{{ ansible_fqdn }}.csr'
       provider: selfsigned
+
 ...
