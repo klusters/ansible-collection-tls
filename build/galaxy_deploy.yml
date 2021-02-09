@@ -1,10 +1,10 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: false
+ 
   vars:
-    # This should be set via the command line at runtime.
     tag: "{{ github_tag.split('/')[-1] }}"
+
   pre_tasks:
     - name: Ensure the ANSIBLE_GALAXY_TOKEN environment variable is set.
       fail:
