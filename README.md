@@ -1,5 +1,5 @@
 # Ansible Collection - klusters.tls
-[Inspired by ericsysmin.tls](https://galaxy.ansible.com/ericsysmin/system)
+[Inspired by ericsysmin.system](https://galaxy.ansible.com/ericsysmin/system)
 
 Ansible collection that holds roles, that can be used to configure TLS on Linux system. 
 
