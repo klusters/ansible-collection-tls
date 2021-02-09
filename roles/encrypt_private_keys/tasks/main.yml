@@ -4,7 +4,7 @@
   set_fact:
     '{{ item.key }}': '{{ item.value }}'
   loop: '{{ outer_item | dict2items }}'
-  when: outer_item
+  when: outer_item is defined
   no_log: yes
 
 - name: Create certs dir
