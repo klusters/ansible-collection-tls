@@ -35,8 +35,6 @@
     keystore_path: '{{ tls_jks_keystore }}'
     keystore_pass: '{{ tls_jks_password }}'
     keystore_create: yes
-    owner: '{{ tls_keystore_owner }}'
-    group: '{{ tls_keystore_owner }}'
     state: present
 
 ...

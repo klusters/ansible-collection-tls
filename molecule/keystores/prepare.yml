@@ -4,15 +4,23 @@
   hosts: all
   vars_files: ['../../roles/keystores/defaults/main.yml']
 
-  tasks:
+  pre_tasks:
   - name: Update package cache
-    package: update_cache=yes
+    package:
+      name: epel-release
+      update_cache: yes
     changed_when: no
     register: task_result
     until: task_result is success
     retries: 10
     delay: 2
 
+  - name: Install python-pip
+    package: 
+      name: python-pip, python-cryptography, pyOpenSSL, java-latest-openjdk
+      update_cache: yes
+
+  tasks:
   - name: Create certs dirs
     file:
       path: "{{ item }}"
@@ -23,6 +31,12 @@
     loop:
     - '{{ tls_certs_path }}'
     - '{{ tls_keys_path }}'
+
+  - name: Generate an OpenSSL private key with the default values (4096 bits, RSA) and a passphrase
+    community.crypto.openssl_privatekey:
+      path: '{{ tls_key }}'
+      passphrase: '{{ tls_keys_password }}'
+      cipher: auto
 
   - name: Generate an OpenSSL Certificate Signing Request
     community.crypto.openssl_csr:
