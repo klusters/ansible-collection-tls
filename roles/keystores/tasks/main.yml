@@ -20,7 +20,7 @@
     passphrase: '{{ tls_p12_password }}'
     friendly_name: '{{ ansible_fqdn }}'
     certificate_path: '{{ tls_cert }}'
-    privatekey_path:  '{{ tls_key }}'
+    privatekey_path:  '{{ tls_key_encrypted }}'
     privatekey_passphrase: '{{ tls_keys_password }}'
     owner: '{{ tls_keystore_owner }}'
     group: '{{ tls_keystore_owner }}'

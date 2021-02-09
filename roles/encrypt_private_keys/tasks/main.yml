@@ -4,10 +4,10 @@
   ansible.builtin.copy:
     remote_src: yes
     src: '{{ tls_key }}'
-    dest: '{{ tls_key }}_encrypted'
+    dest: '{{ tls_key_encrypted }}'
     mode: 0600
 
 - name: Encrypt private key
-  ansible.builtin.command: "ssh-keygen -m PEM -t rsa -f '{{ tls_key }}_encrypted' -p -N '{{ tls_keys_password }}'"
+  ansible.builtin.command: "ssh-keygen -m PEM -t rsa -f '{{ tls_key_encrypted }}' -p -N '{{ tls_keys_password }}'"
 
 ...
