@@ -1,0 +1,20 @@
+---
+
+- name: Prepare
+  hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Update package cache
+    package: update_cache=yes
+    changed_when: no
+    register: task_result
+    until: task_result is success
+    retries: 10
+    delay: 2
+  
+  - name: Gen private key
+    community.crypto.openssl_privatekey:
+      path: '{{ tls_key }}'
+
+...
