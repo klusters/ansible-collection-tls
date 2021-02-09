@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 lint: |
-  yamllint .
-  ansible-lint
+  yamllint */encrypt_private_keys*
+  ansible-lint */encrypt_private_keys*
 platforms:
   - name: instance
     image: ${MOLECULE_DISTRO:-ubuntu:20.04}
