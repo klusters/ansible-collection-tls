@@ -10,29 +10,31 @@
       fail:
         msg: ANSIBLE_GALAXY_TOKEN is not set.
       when: "lookup('env','ANSIBLE_GALAXY_TOKEN') | length == 0"
+
     - name: Ensure the ~/.ansible directory exists.
       file:
         path: ~/.ansible
         state: directory
-        mode: 0600
+
     - name: Write the Galaxy token to ~/.ansible/galaxy_token
       copy:
         content: |
           token: {{ lookup('env','ANSIBLE_GALAXY_TOKEN') }}
         dest: ~/.ansible/galaxy_token
-        mode: 0600
+
   tasks:
     - name: Template out the galaxy.yml file.
       template:
         src: templates/galaxy.yml.j2
         dest: ../galaxy.yml
-        mode: 0600
       register: galaxy_yml
+
     - name: Build the collection. # noqa 503
       command: >
         ansible-galaxy collection build
         chdir=../
       when: galaxy_yml.changed
+
     - name: Publish the collection. # noqa 503
       command: >
         ansible-galaxy collection publish ./klusters-tls-{{ tag }}.tar.gz
