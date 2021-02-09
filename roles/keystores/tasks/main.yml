@@ -1,5 +1,12 @@
 ---
 
+- name: Get vars from item if in a loop
+  set_fact:
+    '{{ item.key }}': '{{ item.value }}'
+  loop: '{{ outer_item | dict2items }}'
+  when: outer_item
+  no_log: yes
+
 - name: Create certs dir
   file:
     path: "{{ item }}"
