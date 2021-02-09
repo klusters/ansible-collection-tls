@@ -15,9 +15,9 @@
     retries: 10
     delay: 2
 
-  - name: Install python-pip
+  - name: Install dependencies
     package: 
-      name: python-pip, python-cryptography, pyOpenSSL, java-latest-openjdk
+      name: python-cryptography, pyOpenSSL, java-latest-openjdk, openssh
       update_cache: yes
 
   tasks:
