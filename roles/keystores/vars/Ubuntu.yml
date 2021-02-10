@@ -2,6 +2,7 @@
 
 sys_packages:
 - python3
+- openssl
 
 tls_packages:
 - python3-cryptography

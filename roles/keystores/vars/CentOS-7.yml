@@ -2,6 +2,7 @@
 
 sys_packages:
 - epel-release
+- openssl
 
 tls_packages:
 - python-cryptography
