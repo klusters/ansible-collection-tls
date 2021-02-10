@@ -43,21 +43,21 @@
   - name: Generate an OpenSSL private key with the default values (4096 bits, RSA) and a passphrase
     community.crypto.openssl_privatekey:
       path: '{{ tls_key_encrypted }}'
-      passphrase: '{{ tls_keys_password }}'
+      passphrase: '{{ tls_key_password }}'
       cipher: auto
 
   - name: Generate an OpenSSL Certificate Signing Request
     community.crypto.openssl_csr:
       path: '{{ tls_cacerts_path }}/{{ ansible_fqdn }}.csr'
       privatekey_path: '{{ tls_key_encrypted }}'
-      privatekey_passphrase: '{{ tls_keys_password }}'
+      privatekey_passphrase: '{{ tls_key_password }}'
       common_name: '{{ ansible_fqdn }}'
 
   - name: Generate a Self Signed OpenSSL certificate
     community.crypto.x509_certificate:
       path: '{{ tls_cacert }}'
       privatekey_path: '{{ tls_key_encrypted }}'
-      privatekey_passphrase: '{{ tls_keys_password }}'
+      privatekey_passphrase: '{{ tls_key_password }}'
       csr_path: '{{ tls_cacerts_path }}/{{ ansible_fqdn }}.csr'
       provider: selfsigned
 

@@ -28,7 +28,7 @@
     friendly_name: '{{ ansible_fqdn }}'
     certificate_path: '{{ tls_cert }}'
     privatekey_path:  '{{ tls_key_encrypted }}'
-    privatekey_passphrase: '{{ tls_keys_password }}'
+    privatekey_passphrase: '{{ tls_key_password }}'
     owner: '{{ tls_keystore_owner }}'
     group: '{{ tls_keystore_group }}'
     state: present
@@ -40,7 +40,7 @@
     cert_alias: '{{ ansible_fqdn }}'
     pkcs12_alias: '{{ ansible_fqdn }}'
     keystore_path: '{{ tls_jks_keystore }}'
-    keystore_pass: '{{ tls_jks_password }}'
+    keystore_pass: '{{ tls_jks_keystore_password }}'
     keystore_create: yes
     state: present
 
