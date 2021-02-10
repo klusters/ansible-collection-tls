@@ -18,10 +18,15 @@
   - '{{ tls_cacerts_path }}'
   - '{{ tls_jks_path }}'
 
+- name: Get information CA certificate
+  community.crypto.x509_certificate_info:
+    path: '{{ tls_cacert }}'
+  register: ca_info
 
 - name: Import cacert in a java truststore
   java_cert:
     cert_path: '{{ tls_cacert }}'
+    cert_alias: '{{ ca_info.subject.commonName }}'
     keystore_path: '{{ tls_jks_truststore }}'
     keystore_pass: '{{ tls_jks_truststore_password }}'
     keystore_create: yes
