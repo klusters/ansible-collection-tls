@@ -7,7 +7,7 @@
   when: outer_item is defined
   no_log: yes
 
-- name: Create certs dir
+- name: Create keys dir
   file:
     path: "{{ item }}"
     state: directory
@@ -15,14 +15,31 @@
   loop:
   - '{{ tls_keys_path }}'
 
-- name: Backup private key
-  ansible.builtin.copy:
-    remote_src: yes
-    src: '{{ tls_key }}'
-    dest: '{{ tls_key_encrypted }}'
-    mode: 0600
+- name: Get information on encrypted key
+  community.crypto.openssl_privatekey_info:
+    path: '{{ tls_key_encrypted }}'
+    passphrase: '{{ tls_keys_password }}'
+  register: encrypted_key
+  failed_when: no
 
-- name: Encrypt private key
-  ansible.builtin.command: "ssh-keygen -m PEM -t rsa -f '{{ tls_key_encrypted }}' -p -N '{{ tls_keys_password }}'"
+- name: Get information on plain key
+  community.crypto.openssl_privatekey_info:
+    path: '{{ tls_key }}'
+  register: plain_key
+
+- name: Generate encrypted private key only if different
+  when: 
+  - encrypted_key.public_key is not defined or
+    encrypted_key.public_key != plain_key.public_key
+  block: 
+  - name: Backup private key
+    ansible.builtin.copy:
+      remote_src: yes
+      src: '{{ tls_key }}'
+      dest: '{{ tls_key_encrypted }}'
+      mode: 0600
+
+  - name: Encrypt private key
+    ansible.builtin.command: "ssh-keygen -m PEM -t rsa -f '{{ tls_key_encrypted }}' -p -N '{{ tls_keys_password }}'"
 
 ...

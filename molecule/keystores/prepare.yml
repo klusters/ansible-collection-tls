@@ -13,7 +13,7 @@
       - "../../roles/keystores/vars/{{ ansible_distribution }}.yml"
     tags: vars
 
-  - name: Update package cache
+  - name: Install system dependencies
     package:
       name: '{{ sys_packages }}'
       update_cache: yes
@@ -23,7 +23,7 @@
     retries: 10
     delay: 2
 
-  - name: Install python-pip
+  - name: Install dependencies
     package: 
       name: '{{ tls_packages }}'
       update_cache: yes
