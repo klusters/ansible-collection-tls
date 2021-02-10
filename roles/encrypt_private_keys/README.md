@@ -14,7 +14,7 @@ Role Variables
 ```yaml
 tls_base_path: /etc/tls/default
 tls_keys_path: '{{ tls_base_path }}/keys'
-tls_keys_password: 'default'
+tls_key_password: 'default'
 tls_key: '{{ tls_keys_path }}/{{ ansible_fqdn }}.key'
 tls_key_encrypted: '{{ tls_keys_path }}/{{ ansible_fqdn }}_encrypted.key'
 ```

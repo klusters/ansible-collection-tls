@@ -25,8 +25,8 @@ tls_key_encrypted: '{{ tls_keys_path }}/{{ ansible_fqdn }}_encrypted.key'
 tls_jks_keystore: '{{ tls_jks_path }}/{{ ansible_fqdn }}.jks'
 tls_p12_keystore: '{{ tls_p12_path }}/{{ ansible_fqdn }}.pkcs12'
 
-tls_keys_password: 'default'
-tls_jks_password: 'default'
+tls_key_password: 'default'
+tls_jks_keystore_password: 'default'
 tls_p12_password: 'default'
 
 tls_keystore_owner: root
