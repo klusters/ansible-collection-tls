@@ -1,0 +1,19 @@
+---
+
+tls_base_path: /etc/tls/default
+
+tls_cacerts_path: '{{ tls_base_path }}/cacerts'
+tls_jks_path: '{{ tls_base_path }}/java'
+tls_p12_path: '{{ tls_base_path }}/pkcs12'
+
+tls_cacert: '{{ tls_certs_path }}/{{ ansible_fqdn }}.ca'
+tls_jks_truststore: '{{ tls_jks_path }}/{{ ansible_fqdn }}-truststore.jks'
+tls_p12_truststore: '{{ tls_p12_path }}/{{ ansible_fqdn }}-truststore.pkcs12'
+
+tls_jks_truststore_password: 'default'
+tls_p12_truststore_password: 'default'
+
+tls_truststore_owner: root
+tls_truststore_group: root
+
+...

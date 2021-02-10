@@ -1,0 +1,44 @@
+---
+
+- name: Get vars from item if in a loop
+  set_fact:
+    '{{ item.key }}': '{{ item.value }}'
+  loop: '{{ outer_item | dict2items }}'
+  when: outer_item is defined
+  no_log: yes
+
+- name: Create certs dir
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: '{{ tls_truststore_owner }}'
+    group: '{{ tls_truststore_group }}'
+  loop:
+  - '{{ tls_certs_path }}'
+  - '{{ tls_jks_path }}'
+  - '{{ tls_p12_path }}'
+
+- name: Generate pkc12 keystore from cacert
+  openssl_pkcs12:
+    action: export
+    path: '{{ tls_p12_truststore }}'
+    passphrase: '{{ tls_p12_truststore_password }}'
+    friendly_name: 'ca'
+    certificate_path: '{{ tls_cacert }}'
+    owner: '{{ tls_truststore_owner }}'
+    group: '{{ tls_truststore_group }}'
+    state: present
+
+- name: Import pkcs12 keystore in a java keystore
+  java_cert:
+    pkcs12_path: '{{ tls_p12_truststore }}'
+    pkcs12_password: '{{ tls_p12_truststore_password }}'
+    cert_alias: 'ca'
+    pkcs12_alias: 'ca'
+    keystore_path: '{{ tls_jks_truststore }}'
+    keystore_pass: '{{ tls_jks_truststore_password }}'
+    keystore_create: yes
+    state: present
+
+...

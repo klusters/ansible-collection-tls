@@ -1,0 +1,24 @@
+---
+
+galaxy_info:
+  author: Klusters
+  description: Manage PKCS12 and Java Truststores (JKS)
+  company: ''
+  license: GPL-2.0-or-later
+  min_ansible_version: 2.9
+  platforms:
+  - name: EL
+    versions:
+    - 8
+    - 7
+  - name: Ubuntu
+    versions:
+    - xenial
+    - bionic
+  galaxy_tags:
+  - system
+  - tls
+  - java
+  - jks
+
+...
