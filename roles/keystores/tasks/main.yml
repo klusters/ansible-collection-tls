@@ -20,18 +20,8 @@
   - '{{ tls_jks_path }}'
   - '{{ tls_p12_path }}'
 
-- name: Generate pkc12 keystore from cert and private_key
-  openssl_pkcs12:
-    action: export
-    path: '{{ tls_p12_keystore }}'
-    passphrase: '{{ tls_p12_password }}'
-    friendly_name: '{{ ansible_fqdn }}'
-    certificate_path: '{{ tls_cert }}'
-    privatekey_path:  '{{ tls_key_encrypted }}'
-    privatekey_passphrase: '{{ tls_key_password }}'
-    owner: '{{ tls_keystore_owner }}'
-    group: '{{ tls_keystore_group }}'
-    state: present
+- name: Create PKCS12 (Ansible <2.7)
+  command: "openssl pkcs12 -export -out '{{ tls_p12_keystore }}' -inkey '{{ tls_key_encrypted }}' -in '{{ tls_cert }}' -passin pass:'{{ tls_key_password }}' -passout pass:'{{ tls_p12_password }}'"
 
 - name: Import pkcs12 keystore in a java keystore
   java_cert:
