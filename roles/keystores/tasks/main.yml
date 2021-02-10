@@ -22,7 +22,8 @@
 
 - name: Create PKCS12 (Ansible <2.7)
   command: "openssl pkcs12 -export -out '{{ tls_p12_keystore }}' -inkey '{{ tls_key_encrypted }}' -in '{{ tls_cert }}' -passin pass:'{{ tls_key_password }}' -passout pass:'{{ tls_p12_password }}'"
-  creates: '{{ tls_p12_keystore }}'
+  args:
+    creates: '{{ tls_p12_keystore }}'
 
 - name: Import pkcs12 keystore in a java keystore
   java_cert:
