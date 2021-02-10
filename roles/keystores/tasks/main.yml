@@ -21,7 +21,7 @@
   - '{{ tls_p12_path }}'
 
 - name: Create PKCS12 (Ansible <2.7)
-  command: "openssl pkcs12 -export -out '{{ tls_p12_keystore }}' -inkey '{{ tls_key_encrypted }}' -in '{{ tls_cert }}' -passin pass:'{{ tls_key_password }}' -passout pass:'{{ tls_p12_password }}'"
+  command: "openssl pkcs12 -export -out '{{ tls_p12_keystore }}' -inkey '{{ tls_key_encrypted }}' -in '{{ tls_cert }}' -passin pass:'{{ tls_key_password }}' -passout pass:'{{ tls_p12_password }}' -name '{{ ansible_fqdn }}'"
   args:
     creates: '{{ tls_p12_keystore }}'
 
