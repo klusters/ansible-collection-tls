@@ -46,6 +46,7 @@ jobs:
           key: ${{ env.pythonLocation }}-${{ hashFiles('molecule/common/python_requirements.txt') }}
 
       - name: Install python packages
+        working-directory: ansible_collections/klusters/tls
         run: |
           pip install --upgrade --upgrade-strategy eager -r molecule/common/python_requirements.txt
 
