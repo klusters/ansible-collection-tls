@@ -21,7 +21,7 @@
 
 - name: Import cacert in a java truststore
   java_cert:
-    cert_path: '{{ tls_p12_truststore }}'
+    cert_path: '{{ tls_cacert }}'
     keystore_path: '{{ tls_jks_truststore }}'
     keystore_pass: '{{ tls_jks_truststore_password }}'
     keystore_create: yes
