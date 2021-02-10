@@ -6,6 +6,7 @@ sys_packages:
 tls_packages:
 - python-cryptography
 - pyOpenSSL
+- openssh
 - java-latest-openjdk
 
 ...
