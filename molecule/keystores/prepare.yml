@@ -5,9 +5,17 @@
   vars_files: ['../../roles/keystores/defaults/main.yml']
 
   pre_tasks:
-  - name: Update package cache
+
+  - name: gather os specific variables
+    include_vars: "{{ item }}"
+    with_first_found:
+      - "../../roles/keystores/vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+      - "../../roles/keystores/vars/{{ ansible_distribution }}.yml"
+    tags: vars
+
+  - name: Install system dependencies
     package:
-      name: epel-release
+      name: '{{ sys_packages }}'
       update_cache: yes
     changed_when: no
     register: task_result
@@ -15,9 +23,9 @@
     retries: 10
     delay: 2
 
-  - name: Install python-pip
+  - name: Install dependencies
     package: 
-      name: python-pip, python-cryptography, pyOpenSSL, java-latest-openjdk
+      name: '{{ tls_packages }}'
       update_cache: yes
 
   tasks:

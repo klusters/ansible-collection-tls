@@ -13,7 +13,7 @@
     state: directory
     mode: 0755
     owner: '{{ tls_keystore_owner }}'
-    group: '{{ tls_keystore_owner }}'
+    group: '{{ tls_keystore_group }}'
   loop:
   - '{{ tls_certs_path }}'
   - '{{ tls_keys_path }}'
@@ -30,7 +30,7 @@
     privatekey_path:  '{{ tls_key_encrypted }}'
     privatekey_passphrase: '{{ tls_keys_password }}'
     owner: '{{ tls_keystore_owner }}'
-    group: '{{ tls_keystore_owner }}'
+    group: '{{ tls_keystore_group }}'
     state: present
 
 - name: Import pkcs12 keystore in a java keystore

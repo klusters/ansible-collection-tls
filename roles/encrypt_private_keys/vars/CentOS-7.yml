@@ -1,0 +1,12 @@
+---
+
+sys_packages:
+- epel-release
+
+tls_packages:
+- python-cryptography
+- pyOpenSSL
+- openssh
+- java-latest-openjdk
+
+...
