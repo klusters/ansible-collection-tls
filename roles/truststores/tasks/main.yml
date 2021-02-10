@@ -15,7 +15,7 @@
     owner: '{{ tls_truststore_owner }}'
     group: '{{ tls_truststore_group }}'
   loop:
-  - '{{ tls_certs_path }}'
+  - '{{ tls_cacerts_path }}'
   - '{{ tls_jks_path }}'
   - '{{ tls_p12_path }}'
 
