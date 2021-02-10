@@ -24,7 +24,7 @@
     action: export
     path: '{{ tls_p12_truststore }}'
     passphrase: '{{ tls_p12_truststore_password }}'
-    friendly_name: 'ca'
+    friendly_name: '{{ ansible_fqdn }}'
     certificate_path: '{{ tls_cacert }}'
     owner: '{{ tls_truststore_owner }}'
     group: '{{ tls_truststore_group }}'
@@ -34,8 +34,8 @@
   java_cert:
     pkcs12_path: '{{ tls_p12_truststore }}'
     pkcs12_password: '{{ tls_p12_truststore_password }}'
-    cert_alias: 'ca'
-    pkcs12_alias: 'ca'
+    cert_alias: '{{ ansible_fqdn }}'
+    pkcs12_alias: '{{ ansible_fqdn }}'
     keystore_path: '{{ tls_jks_truststore }}'
     keystore_pass: '{{ tls_jks_truststore_password }}'
     keystore_create: yes
