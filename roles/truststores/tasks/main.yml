@@ -1,0 +1,36 @@
+---
+
+- name: Get vars from item if in a loop
+  set_fact:
+    '{{ item.key }}': '{{ item.value }}'
+  loop: '{{ outer_item | dict2items }}'
+  when: outer_item is defined
+  no_log: yes
+
+- name: Create certs dir
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: '{{ tls_truststore_owner }}'
+    group: '{{ tls_truststore_group }}'
+  loop:
+  - '{{ tls_cacerts_path }}'
+  - '{{ tls_jks_path }}'
+
+- name: Get information CA certificate
+  community.crypto.x509_certificate_info:
+    path: '{{ tls_cacert }}'
+  register: ca_info
+
+- name: Import cacert in a java truststore
+  java_cert:
+    cert_path: '{{ tls_cacert }}'
+    cert_alias: '{{ ca_info.subject.commonName }}'
+    keystore_path: '{{ tls_jks_truststore }}'
+    keystore_pass: '{{ tls_jks_truststore_password }}'
+    keystore_create: yes
+    trust_cacert: yes
+    state: present
+
+...

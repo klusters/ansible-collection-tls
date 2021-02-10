@@ -1,0 +1,12 @@
+---
+
+sys_packages:
+- python3
+
+tls_packages:
+- python3-cryptography
+- python3-openssl
+- openssh-client
+- openjdk-11-jdk
+
+...
