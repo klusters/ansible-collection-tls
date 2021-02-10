@@ -9,6 +9,7 @@ Ansible collection that holds roles, that can be used to configure TLS on Linux 
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 |  encrypt_private_keys   | ![klusters.tls.encrypt_private_keys](https://github.com/klusters/ansible-collection-tls/workflows/klusters.tls.encrypt_private_keys/badge.svg)          | [Documentation](https://github.com/klusters/ansible-collection-tls/tree/master/roles/encrypt_private_keys)    |
 |  keystores   | ![klusters.tls.keystores](https://github.com/klusters/ansible-collection-tls/workflows/klusters.tls.keystores/badge.svg)          | [Documentation](https://github.com/klusters/ansible-collection-tls/tree/master/roles/keystores)    |
+|  truststores   | ![klusters.tls.truststores](https://github.com/klusters/ansible-collection-tls/workflows/klusters.tls.truststores/badge.svg)          | [Documentation](https://github.com/klusters/ansible-collection-tls/tree/master/roles/truststores)    |
 
 ## Usage
 
