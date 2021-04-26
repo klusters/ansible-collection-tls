@@ -9,25 +9,29 @@ on:
     - 'molecule/truststores/**'
     - '.github/workflows/truststores.yml'
     - 'molecule/common/**'
+    tags_ignore:
+      - '*'
 
 jobs:
   molecule:
     runs-on: ubuntu-latest
+
     env:
       PY_COLORS: 1
-      ANSIBLE_FORCE_COLOR: 1
       MOLECULE_DISTRO: ${{ matrix.molecule_distro.distro }}
       MOLECULE_COMMAND: ${{ matrix.molecule_distro.command }}
+      
     strategy:
       fail-fast: true
       matrix:
         molecule_distro:
-        - { "distro":"centos:7" }
-        - { "distro":"centos:8" }
-        - { "distro":"ubuntu:18.04" }
-        - { "distro":"ubuntu:20.04" }
+        - {'distro': 'centos:7'}
+        - {'distro': 'centos:8'}
+        - {'distro': 'ubuntu:18.04'}
+        - {'distro': 'ubuntu:20.04'}
         collection_role:
         - truststores
+
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
@@ -48,7 +52,8 @@ jobs:
     - name: Install python packages
       working-directory: ansible_collections/klusters/tls
       run: |
-        pip install --upgrade --upgrade-strategy eager -r molecule/common/python_requirements.txt
+        (test -f molecule/${{ matrix.collection_role }}/python_requirements.txt && pip install --upgrade --upgrade-strategy eager -r molecule/${{ matrix.collection_role }}/python_requirements.txt ) ||
+        (test -f molecule/common/python_requirements.txt && pip install --upgrade --upgrade-strategy eager -r molecule/common/python_requirements.txt )
 
     - name: Run tests
       working-directory: ansible_collections/klusters/tls

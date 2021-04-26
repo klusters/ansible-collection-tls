@@ -1,19 +1,17 @@
 ---
 
 - name: Get vars from item if in a loop
-  set_fact:
+  when: outer_item is defined
+  ansible.builtin.set_fact:
     '{{ item.key }}': '{{ item.value }}'
   loop: '{{ outer_item | dict2items }}'
-  when: outer_item is defined
   no_log: yes
 
 - name: Create keys dir
-  file:
-    path: "{{ item }}"
+  ansible.builtin.file:
+    path: '{{ tls_keys_path }}'
     state: directory
     mode: 0755
-  loop:
-  - '{{ tls_keys_path }}'
 
 - name: Get information on encrypted key
   community.crypto.openssl_privatekey_info:
