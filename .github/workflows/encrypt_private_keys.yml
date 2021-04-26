@@ -9,6 +9,8 @@ on:
     - 'molecule/encrypt_private_keys/**'
     - '.github/workflows/encrypt_private_keys.yml'
     - 'molecule/common/**'
+    tags_ignore:
+      - '*'
 
 jobs:
   molecule:

@@ -9,10 +9,9 @@
 
 - name: Create keys dir
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: '{{ tls_keys_path }}'
     state: directory
     mode: 0755
-  loop: '{{ tls_keys_path }}'
 
 - name: Get information on encrypted key
   community.crypto.openssl_privatekey_info:

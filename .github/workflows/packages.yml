@@ -1,13 +1,13 @@
 ---
 
-name: "klusters.tls.keystores"
+name: "klusters.tls.packages"
 
 on:
   push:
     paths:
-    - 'roles/keystores/**'
-    - 'molecule/keystores/**'
-    - '.github/workflows/keystores.yml'
+    - 'roles/packages/**'
+    - 'molecule/packages/**'
+    - '.github/workflows/packages.yml'
     - 'molecule/common/**'
     tags_ignore:
       - '*'
@@ -30,7 +30,7 @@ jobs:
         - {'distro': 'ubuntu:18.04'}
         - {'distro': 'ubuntu:20.04'}
         collection_role:
-        - keystores
+        - packages
 
     steps:
     - name: Git checkout

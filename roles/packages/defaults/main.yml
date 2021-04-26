@@ -1,0 +1,7 @@
+---
+
+install_sys_packages: yes
+install_tls_packages: yes
+install_jdk_packages: yes
+
+...

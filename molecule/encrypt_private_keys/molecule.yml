@@ -1,4 +1,5 @@
 ---
+
 dependency:
   name: galaxy
 
@@ -12,7 +13,6 @@ lint: |
 platforms:
 - name: instance
   image: ${MOLECULE_DISTRO:-ubuntu:20.04}
-  privileged: true
   command: ${MOLECULE_COMMAND:-"sleep infinity"}
   volumes:
   - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -26,3 +26,5 @@ provisioner:
 
 verifier:
   name: ansible
+
+...

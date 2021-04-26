@@ -4,8 +4,8 @@
   hosts: all
 
   tasks:
-  - name: Create Keystores
+  - name: Install dependencies
     include_role:
-      name: klusters.tls.keystores
+      name: klusters.tls.packages
 
 ...

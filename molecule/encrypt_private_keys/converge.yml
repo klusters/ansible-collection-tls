@@ -3,7 +3,9 @@
 - name: Converge
   hosts: all
 
-  roles:
-    - role: encrypt_private_keys
+  tasks:
+  - name: Encrypt private keys
+    include_role:
+      name: klusters.tls.encrypt_private_keys
 
 ...

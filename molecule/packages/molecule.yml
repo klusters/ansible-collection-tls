@@ -7,13 +7,12 @@ driver:
   name: docker
 
 lint: |
-  yamllint */keystores*
-  ansible-lint */keystores*
+  yamllint */packages*
+  ansible-lint */packages*
 
 platforms:
 - name: instance
   image: ${MOLECULE_DISTRO:-ubuntu:20.04}
-  privileged: true
   command: ${MOLECULE_COMMAND:-"sleep infinity"}
   volumes:
   - /sys/fs/cgroup:/sys/fs/cgroup:ro
