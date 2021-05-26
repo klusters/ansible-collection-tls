@@ -7,11 +7,11 @@
 
   tasks:
   - name: Install dependencies
-    include_role:
+    ansible.builtin.include_role:
       name: klusters.tls.packages
 
   - name: Create certs dirs
-    file:
+    ansible.builtin.file:
       path: "{{ item }}"
       state: directory
       mode: 0755

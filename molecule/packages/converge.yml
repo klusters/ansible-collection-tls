@@ -5,7 +5,7 @@
 
   tasks:
   - name: Install dependencies
-    include_role:
+    ansible.builtin.include_role:
       name: klusters.tls.packages
 
 ...

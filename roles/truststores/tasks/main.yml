@@ -1,14 +1,14 @@
 ---
 
 - name: Get vars from item if in a loop
-  set_fact:
+  ansible.builtin.set_fact:
     '{{ item.key }}': '{{ item.value }}'
   loop: '{{ outer_item | dict2items }}'
   when: outer_item is defined
   no_log: yes
 
 - name: Create certs dir
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0755
@@ -24,7 +24,7 @@
   register: ca_info
 
 - name: Import cacert in a java truststore
-  java_cert:
+  community.general.java_cert:
     cert_path: '{{ tls_cacert }}'
     cert_alias: '{{ ca_info.subject.commonName }}'
     keystore_path: '{{ tls_jks_truststore }}'

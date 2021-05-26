@@ -10,7 +10,7 @@ on:
     - '.github/workflows/packages.yml'
     - 'molecule/common/**'
     tags_ignore:
-      - '*'
+    - '*'
 
 jobs:
   molecule:

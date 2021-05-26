@@ -1,14 +1,14 @@
 ---
 
 - name: Get vars from item if in a loop
-  set_fact:
+  ansible.builtin.set_fact:
     '{{ item.key }}': '{{ item.value }}'
   loop: '{{ outer_item | dict2items }}'
   when: outer_item is defined
   no_log: yes
 
 - name: Create certs dir
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0755
@@ -21,7 +21,7 @@
   - '{{ tls_p12_path }}'
 
 - name: Generate pkc12 keystore from cert and private_key
-  openssl_pkcs12:
+  community.crypto.openssl_pkcs12:
     action: export
     path: '{{ tls_p12_keystore }}'
     passphrase: '{{ tls_p12_password }}'
@@ -34,7 +34,7 @@
     state: present
 
 - name: Import pkcs12 keystore in a java keystore
-  java_cert:
+  community.general.java_cert:
     pkcs12_path: '{{ tls_p12_keystore }}'
     pkcs12_password: '{{ tls_p12_password }}'
     cert_alias: '{{ ansible_fqdn }}'

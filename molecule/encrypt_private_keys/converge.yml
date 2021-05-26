@@ -5,7 +5,7 @@
 
   tasks:
   - name: Encrypt private keys
-    include_role:
+    ansible.builtin.include_role:
       name: klusters.tls.encrypt_private_keys
 
 ...
