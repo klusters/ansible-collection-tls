@@ -5,7 +5,7 @@
 
   tasks:
   - name: Create Keystores
-    include_role:
+    ansible.builtin.include_role:
       name: klusters.tls.keystores
 
 ...

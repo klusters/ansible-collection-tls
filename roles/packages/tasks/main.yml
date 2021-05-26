@@ -4,7 +4,7 @@
   when:
   - lookup('vars', 'install_' + item + '_packages') | bool
   - lookup('vars', item + '_packages') | length > 0
-  package:
+  ansible.builtin.package:
     name: "{{ lookup('vars', item + '_packages') }}"
     update_cache: yes
   register: task_result

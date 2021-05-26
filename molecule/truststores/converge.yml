@@ -3,7 +3,9 @@
 - name: Converge
   hosts: all
 
-  roles:
-    - role: truststores
+  tasks:
+  - name: Create Truststores
+    ansible.builtin.include_role:
+      name: klusters.tls.truststores
 
 ...
