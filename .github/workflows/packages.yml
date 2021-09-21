@@ -55,6 +55,14 @@ jobs:
         (test -f molecule/${{ matrix.collection_role }}/python_requirements.txt && pip install --upgrade --upgrade-strategy eager -r molecule/${{ matrix.collection_role }}/python_requirements.txt ) ||
         (test -f molecule/common/python_requirements.txt && pip install --upgrade --upgrade-strategy eager -r molecule/common/python_requirements.txt )
 
+    - name: Build the collection
+      run: |
+        collection_file=$( basename $(ansible-galaxy collection build -f | awk -F" " '{print $NF}'))
+        echo "::set-env name=COLLECTION_FILE::$collection_file"
+
+    - name: Install the collection
+      run: ansible-galaxy collection install $COLLECTION_FILE
+
     - name: Run tests
       working-directory: ansible_collections/klusters/tls
       run: |
