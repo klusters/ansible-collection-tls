@@ -9,7 +9,4 @@ tls_key_encrypted: '{{ tls_keys_path }}/{{ ansible_fqdn }}_encrypted.key'
 
 tls_key_password: 'default'
 
-install_sys_packages: yes
-install_tls_packages: yes
-
 ...
