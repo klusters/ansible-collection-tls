@@ -17,31 +17,18 @@
   loop:
   - '{{ tls_certs_path }}'
   - '{{ tls_keys_path }}'
-  - '{{ tls_jks_path }}'
-  - '{{ tls_p12_path }}'
+  - '{{ tls_keystore_path }}'
 
-- name: Generate pkc12 keystore from cert and private_key
-  community.crypto.openssl_pkcs12:
-    action: export
-    path: '{{ tls_p12_keystore }}'
-    passphrase: '{{ tls_p12_password }}'
-    friendly_name: '{{ ansible_fqdn }}'
+- name: Create Java keystore from cert and private_key
+  community.general.java_keystore:
+    name: '{{ tls_keystore_alias }}'
     certificate_path: '{{ tls_cert }}'
-    privatekey_path:  '{{ tls_key_encrypted }}'
-    privatekey_passphrase: '{{ tls_key_password }}'
+    private_key_path: '{{ tls_key_encrypted }}'
+    private_key_passphrase: '{{ tls_key_password }}'
+    password: '{{ tls_keystore_password }}'
+    dest: '{{ tls_keystore }}'
     owner: '{{ tls_keystore_owner }}'
     group: '{{ tls_keystore_group }}'
-    state: present
-
-- name: Import pkcs12 keystore in a java keystore
-  community.general.java_cert:
-    pkcs12_path: '{{ tls_p12_keystore }}'
-    pkcs12_password: '{{ tls_p12_password }}'
-    cert_alias: '{{ ansible_fqdn }}'
-    pkcs12_alias: '{{ ansible_fqdn }}'
-    keystore_path: '{{ tls_jks_keystore }}'
-    keystore_pass: '{{ tls_jks_keystore_password }}'
-    keystore_create: yes
-    state: present
+    keystore_type: jks
 
 ...
