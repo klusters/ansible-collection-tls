@@ -49,23 +49,22 @@ Take a look at playbooks/``**``/keystores.yml to see executions related to this 
 Testing is done through GitHub Actions, and can be tested locally as well.
 
 To be able to test locally:
-- install docker 
-- install [nektos/act](https://github.com/nektos/act)
-- download the huge docker image (18GB) : [nektos/act-environments-ubuntu:18.04](https://hub.docker.com/r/nektos/act-environments-ubuntu/tags)
+- install docker
+- install dependencies
 
 For example, on MacOS:
 ```bash
 brew cask install docker
 
-brew install act
-
 open /Applications/Docker.app
-docker pull nektos/act-environments-ubuntu:18.04
+
+pip install --upgrade --upgrade-strategy eager -r molecule/common/python_requirements.txt
 ```
 
-Each workflow pertains to a single role, and can be launched locally using the following command:
+Each role can be launched locally using the following command:
 
 ```bash
-act -W .github/workflows/<WORKFLOW_FILE_TO_RUN> \
--P ubuntu-latest=nektos/act-environments-ubuntu:18.04
+export MOLECULE_DISTRO=<DISTRO> # Tested with centos:7, centos:8, ubuntu:18.04, ubuntu:20.04
+
+molecule test -s <SCENARIO> # ls molecule 
 ```
