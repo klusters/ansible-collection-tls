@@ -16,7 +16,7 @@
     group: '{{ tls_truststore_group }}'
   loop:
   - '{{ tls_cacerts_path }}'
-  - '{{ tls_jks_path }}'
+  - '{{ tls_truststores_path }}'
 
 - name: Get information CA certificate
   community.crypto.x509_certificate_info:
@@ -27,8 +27,8 @@
   community.general.java_cert:
     cert_path: '{{ tls_cacert }}'
     cert_alias: '{{ ca_info.subject.commonName }}'
-    keystore_path: '{{ tls_jks_truststore }}'
-    keystore_pass: '{{ tls_jks_truststore_password }}'
+    keystore_path: '{{ tls_truststore }}'
+    keystore_pass: '{{ tls_truststore_password }}'
     keystore_create: yes
     trust_cacert: yes
     state: present

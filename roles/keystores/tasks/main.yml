@@ -17,7 +17,7 @@
   loop:
   - '{{ tls_certs_path }}'
   - '{{ tls_keys_path }}'
-  - '{{ tls_keystore_path }}'
+  - '{{ tls_keystores_path }}'
 
 - name: Create Java keystore from cert and private_key
   community.general.java_keystore:

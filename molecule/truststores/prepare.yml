@@ -4,6 +4,7 @@
   hosts: all
   vars_files:
   - '../../roles/truststores/defaults/main.yml'
+  - '../../roles/encrypt_private_keys/defaults/main.yml'
 
   tasks:
   - name: Install dependencies
