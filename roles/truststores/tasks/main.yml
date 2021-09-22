@@ -27,8 +27,8 @@
   community.general.java_cert:
     cert_path: '{{ tls_cacert }}'
     cert_alias: '{{ ca_info.subject.commonName }}'
-    keystore_path: '{{ tls_jks_truststore }}'
-    keystore_pass: '{{ tls_jks_truststore_password }}'
+    keystore_path: '{{ tls_truststore }}'
+    keystore_pass: '{{ tls_truststore_password }}'
     keystore_create: yes
     trust_cacert: yes
     state: present
